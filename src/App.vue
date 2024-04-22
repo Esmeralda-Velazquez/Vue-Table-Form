@@ -1,26 +1,43 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <link rel="stylesheet" href="https://unpkg.com/primitive-ui/dist/css/main.css" />
+  <div id="app" class="small-container">
+    <h1>Form</h1>
+    <!-- Pasar el arreglo de empleados como prop a EmployeeForm -->
+    <employee-form :employees="employees" />
+    <h1>Employees</h1>
+    <!-- Pasar el arreglo de empleados como prop a EmployeeTable -->
+    <employee-table :employees="employees" />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import EmployeeTable from '@/components/EmployeeTable.vue';
+import EmployeeForm from '@/components/EmployeeForm.vue';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  name: 'HelloWorld',
+  components:{
+    EmployeeTable,
+    EmployeeForm
+  },
+  data() {
+    return {
+      employees: [ 
+        { name: 'Richard Hendricks', email: 'richard@piedpiper.com' },
+        { name: 'Bertram Gilfoyle', email: 'gilfoyle@piedpiper.com' },
+        { name: 'Dinesh Chugtai', email: 'dinesh@piedpiper.com' }
+      ]
+    };
+  },
+  methods: {
+    editEmployee(rowData) {
+      console.log('Editar empleado:', rowData);
+    },
+    deleteEmployee(rowData) {
+      console.log('Eliminar empleado:', rowData);
+    }
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
